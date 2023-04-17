@@ -174,6 +174,22 @@ def test_parallel_axis():
         (R.parallel_axis(p, A) - Ip_expected).to_matrix(A)) == zeros(3, 3)
 
 
+def test_add_point():
+    rb = RigidBody('rb')
+    P1, P2, P3 = Point('P1'), Point('P2'), Point('P3')
+    rb.add_point(P1)
+    assert rb.points == [P1]
+    assert rb.points[0].vel(rb.frame) == 0
+    rb.add_point(P2, False)
+    assert rb.points == [P1, P2]
+    raises(ValueError, lambda: rb.points[1].vel(rb.frame))
+    rb.add_point(P3)
+    assert rb.points == [P1, P2, P3]
+    assert rb.points[2].vel(rb.frame) == 0
+    rb.add_point(P1)
+    assert rb.points == [P1, P2, P3]
+
+
 def test_deprecated_set_potential_energy():
     m, g, h = symbols('m g h')
     A = ReferenceFrame('A')

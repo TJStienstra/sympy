@@ -207,3 +207,16 @@ method is deprecated. Instead use
         """
         return inertia_of_point_mass(self.mass, self.point.pos_from(point),
                                      frame)
+
+    def add_point(self, point):
+        """Add a point to the particle.
+
+        Parameters
+        ==========
+
+        point : sympy.physics.vector.Point
+            The point to add to the particle.
+
+        """
+        if point not in self.points:
+            self.points.append(point)

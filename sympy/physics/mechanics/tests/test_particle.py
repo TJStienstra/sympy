@@ -70,6 +70,17 @@ def test_parallel_axis():
     assert Ip == Ip_expected
 
 
+def test_add_point():
+    p = Particle('P')
+    P1, P2 = Point('P1'), Point('P2')
+    p.add_point(P1)
+    assert p.points == [P1]
+    p.add_point(P2)
+    assert p.points == [P1, P2]
+    p.add_point(P1)
+    assert p.points == [P1, P2]
+
+
 def test_deprecated_set_potential_energy():
     m, g, h = symbols('m g h')
     P = Point('P')

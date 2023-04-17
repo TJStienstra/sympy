@@ -308,3 +308,20 @@ method is deprecated. Instead use
             frame = self.frame
         return self.central_inertia + inertia_of_point_mass(
             self.mass, self.masscenter.pos_from(point), frame)
+
+    def add_point(self, point, body_fixed=True):
+        """Adds a point to the rigid body.
+
+        Parameters
+        ==========
+
+        point : sympy.physics.vector.Point
+            The point to be added to the rigid body.
+        body_fixed : bool
+            If True, the velocity of the point is set to zero in the frame
+            associated with the body.
+        """
+        if point not in self.points:
+            self.points.append(point)
+        if body_fixed:
+            point.set_vel(self.frame, 0)
