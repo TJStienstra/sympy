@@ -338,9 +338,8 @@ class KanesMethod(_Methods):
         ==========
         kdeqs : sequence of sympy expressions
             Kinematic differential equations in the form of f(u,q',q,t) where
-            f() = 0. The equations have to be linear in the generalized
-            coordinates and generalized speeds.
-
+            f() = 0. The equations have to be linear in the generalized speeds
+            and the time-derivatives of the generalized coordinates.
         """
         linear_solver = _parse_linear_solver(linear_solver)
         if kdeqs:
